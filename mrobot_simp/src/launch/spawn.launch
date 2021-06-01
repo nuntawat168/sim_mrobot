@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<launch>
+
+    <param name ="robot_description" command="cat '$(find mrobot_simp)/src/models/mrobot.xacro'"/> 
+
+    <!--Open world simmulation-->
+    <include file = "$(find gazebo_ros)/launch/empty_world.launch">
+        <!--arg name="world_name" value="$(find mrobot_simp)/src/worlds/room5/world1/room101.world"/-->
+        <!--arg name="world_name" value="/home/cza-001/Desktop/FRA502_WS/src/mrobot_simp/src/worlds/room4/worldroom4/roomworld.world"/-->
+    </include>
+
+    <!--Spawn robot-->
+    <node name="mrobot" pkg="gazebo_ros" type="spawn_model"  respawn="false" output="screen" 
+           args="-urdf -param robot_description -model mybot"/>
+
+    <!--Run keyboard teleop node-->
+    <!--node name="mykey_tele_n" pkg="mrobot_simp" type="mykey_tele.py" output="screen"/-->  
+</launch>
